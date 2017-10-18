@@ -75,6 +75,7 @@ public class Colosseum {
     public static Pokemon buildPokemon() {
         Pokemon tempPokemon = new Pokemon();
         boolean check = false;
+        int input = 0;
 
         //Name input
         System.out.println("Please name your Pokemon: ");
@@ -83,11 +84,14 @@ public class Colosseum {
         //Hitpoints input
         System.out.println("How many hit points will it have? (1-50): ");
         while (!check) {
-            if (myScan.hasNextInt()
-                    && myScan.nextInt() >= 1
-                    && myScan.nextInt() <= MAX_HIT_POINTS) {
-                tempPokemon.hitPoints = myScan.nextInt();
-                check = true;
+            if (myScan.hasNextInt()) {
+                input = myScan.nextInt();
+                if (input >= 1 && input <= MAX_HIT_POINTS) {
+                    tempPokemon.hitPoints = input;
+                    check = true;
+                } else {
+                    System.out.println("Sorry. Hit points must be between 1 and 50: ");
+                }
             } else {
                 System.out.println("Sorry. Hit points must be between 1 and 50: ");
             }
@@ -98,11 +102,14 @@ public class Colosseum {
         //Attack level input
         System.out.println("Enter your attack level (1-49): ");
         while (!check) {
-            if (myScan.hasNextInt()
-                    && myScan.nextInt() >= 1
-                    && myScan.nextInt() <= MAX_HIT_POINTS - 1) {
-                tempPokemon.attackLevel = myScan.nextInt();
-                check = true;
+            if (myScan.hasNextInt()) {
+                input = myScan.nextInt();
+                if (input >= 1 && input <= MAX_HIT_POINTS - 1) {
+                    tempPokemon.attackLevel = input;
+                    check = true;
+                } else {
+                    System.out.println("Sorry. The attack level must be between 1 and 49: ");
+                }
             } else {
                 System.out.println("Sorry. The attack level must be between 1 and 49: ");
             }
@@ -113,14 +120,18 @@ public class Colosseum {
         System.out.println("Enter your defense level (1-"
         + (MAX_HIT_POINTS - tempPokemon.attackLevel) + "): ");
         while (!check) {
-            if (myScan.hasNextInt()
-                    && myScan.nextInt() >= 1
-                    && myScan.nextInt() <= MAX_HIT_POINTS - tempPokemon.attackLevel) {
-                tempPokemon.defenseLevel = myScan.nextInt();
-                check = true;
+            if (myScan.hasNextInt()) {
+                input = myScan.nextInt();
+                if (input >= 1 && input <= MAX_HIT_POINTS - tempPokemon.attackLevel) {
+                    tempPokemon.defenseLevel = input;
+                    check = true;
+                } else {
+                    System.out.println("Sorry. The defense level must be between 1 and "
+                            + (MAX_HIT_POINTS - tempPokemon.attackLevel) + ": ");
+                }
             } else {
                 System.out.println("Sorry. The defense level must be between 1 and "
-            + (MAX_HIT_POINTS - tempPokemon.attackLevel) + ": ");
+                        + (MAX_HIT_POINTS - tempPokemon.attackLevel) + ": ");
             }
         }
 
